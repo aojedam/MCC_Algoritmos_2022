@@ -9,6 +9,7 @@
 | :-: | :-: | :-: |
 | Vicente Machaca Arceda | Maestría en Ciencia de la Computación | Algoritmos y Estructura de Datos |
 <br/>
+
 | PRÁCTICA | TEMA | DURACIÓN |
 | :-: | :-: | :-: |
 | 01 | Algoritmos de ordenación | 3 horas
