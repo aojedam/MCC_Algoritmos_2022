@@ -1,4 +1,5 @@
 ![UNSA](https://github.com/UNSA-MCC-2022/MCC_Algoritmos_2022/blob/main/logo_unsa.jpg)
+<img src="https://github.com/UNSA-MCC-2022/MCC_Algoritmos_2022/blob/main/logo_unsa.jpg" alt="UNSA" width="50%"/>
 
 ### Universidad Nacional de San Agustín <br/> Maestría en Ciencia de la Computación <br/>  Algoritmos y Estructura de Datos
 <hr/>
@@ -9,8 +10,6 @@
 | :-: | :-: | :-: |
 | Vicente Machaca Arceda | Maestría en Ciencia de la Computación | Algoritmos y Estructura de Datos |
 <br/>
-<br/>
-
 | PRÁCTICA | TEMA | DURACIÓN |
 | :-: | :-: | :-: |
 | 01 | Algoritmos de ordenación | 3 horas
