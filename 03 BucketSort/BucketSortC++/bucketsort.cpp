@@ -1,10 +1,35 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
 
-void bucketSort(float arr[], int n)
+vector<float> readDataFromFile(string filePath)
 {
+	ifstream inputFile(filePath);
+	vector<float> arrayFromFile;
+
+	if (!inputFile.is_open())
+		cout << "Error al abrir el archivo";
+
+	if (inputFile) {
+		float value;
+
+		while (inputFile >> value) {
+			arrayFromFile.push_back(value);
+		}
+	}
+
+	inputFile.close();
+	return arrayFromFile;
+}
+
+void bucketSort(vector<float>& arr)
+{
+	int n = arr.size();
+
 	vector<float> b[n];
 	for (int i = 0; i < n; i++) {
 		int bi = n * arr[i]; 
@@ -22,12 +47,21 @@ void bucketSort(float arr[], int n)
 
 int main()
 {
-	float arr[]
-		= { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };
-	int n = sizeof(arr) / sizeof(arr[0]);
-	bucketSort(arr, n);
 
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << " ";
+	auto start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+
+	vector<float> vectorToSort;
+	vectorToSort = readDataFromFile("sample_data/BucketSort_100.txt");
+
+	bucketSort(vectorToSort);
+
+	auto stop = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+
+	cout << endl<< "Duracion de ordenamiento" << endl;
+	auto duration = stop - start;
+	cout << duration << endl;
+
+	/*for (int i = 0; i < vectorToSort.size(); i++)
+		cout << vectorToSort[i] << " ";*/
 	return 0;
 }

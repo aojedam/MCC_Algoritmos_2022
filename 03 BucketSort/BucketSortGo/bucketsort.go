@@ -1,11 +1,34 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"	
+	"io/ioutil"
 	"strconv"
+	"strings"
 )
 
+func readDataFromFile(filePath string) []float64 {
+	var ints []float64
+	b, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		log.Print(err)
+	}
+
+	str := string(b)
+	for index, element := range strings.Split(str, " ") {
+		log.Println(index)
+
+		const bitSize = 64
+    intVar, err := strconv.ParseFloat(element, bitSize)
+   
+		if err != nil {
+			log.Print(err)
+		}
+		ints = append(ints, intVar)
+	}
+
+	return ints
+}
 
 func insertionSort(array []float64) {
 	for i := 0; i < len(array); i++ {
@@ -18,8 +41,9 @@ func insertionSort(array []float64) {
 	}
 }
 
-func bucketSort(array []float64, bucketSize int) []float64 {
+func bucketSort(array []float64) []float64 {
 	var max, min float64
+	arraySize := len(array)
 	for _, n := range array {
 		if n < min {
 			min = n
@@ -28,14 +52,14 @@ func bucketSort(array []float64, bucketSize int) []float64 {
 			max = n
 		}
 	}
-	nBuckets := int(max-min)/bucketSize + 1
+	nBuckets := int(max-min)/arraySize + 1
 	buckets := make([][]float64, nBuckets)
 	for i := 0; i < nBuckets; i++ {
 		buckets[i] = make([]float64, 0)
 	}
 
 	for _, n := range array {
-		idx := int(n-min) / bucketSize
+		idx := int(n-min) / arraySize
 		buckets[idx] = append(buckets[idx], n)
 	}
 
@@ -52,13 +76,6 @@ func bucketSort(array []float64, bucketSize int) []float64 {
 
 func main() {
 
-	array :=[]float64{0.897, 0.565, 0.656,
-		0.1234, 0.665, 0.3434}
-	for _, arg := range os.Args[1:] {
-		if n, err := strconv.ParseFloat(arg, 64); err == nil {
-			array = append(array, n)
-		}
-	}
-	array = bucketSort(array, 5)
-	fmt.Printf("Bucket Sort %v\n", array)
+	arrayToSort := readDataFromFile("sample_data/BucketSort_100.txt")
+	bucketSort(arrayToSort)
 }

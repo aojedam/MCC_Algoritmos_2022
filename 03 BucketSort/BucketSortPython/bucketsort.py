@@ -1,3 +1,9 @@
+import time
+import datetime
+
+def read_data_from_file(file_path):
+	input_file = open(file_path, "r")
+	return [float(item) for item in input_file.read().split(' ')]
 
 def insertionSort(b):
 	for i in range(1, len(b)):
@@ -7,15 +13,17 @@ def insertionSort(b):
 			b[j + 1] = b[j]
 			j -= 1
 		b[j + 1] = up	
-	return b	
-			
-def bucketSort(x):
+	return b				
+
+def bucketSort(list_to_sort):
+	vector_size = len(list_to_sort)
+
 	arr = []
-	slot_num = 10 
+	slot_num = vector_size 
 	for i in range(slot_num):
 		arr.append([])
 		
-	for j in x:
+	for j in list_to_sort:
 		index_b = int(slot_num * j)
 		arr[index_b].append(j)
 		
@@ -25,11 +33,22 @@ def bucketSort(x):
 	k = 0
 	for i in range(slot_num):
 		for j in range(len(arr[i])):
-			x[k] = arr[i][j]
+			list_to_sort[k] = arr[i][j]
 			k += 1
-	return x
+	return list_to_sort
 
-x = [0.897, 0.565, 0.656,
-	0.1234, 0.665, 0.3434]
 
-print(bucketSort(x))
+def main():
+	start_time = datetime.datetime.now()
+	print(start_time)
+
+	list_to_sort = read_data_from_file(r'sample_data/BucketSort_1000000.txt')
+	bucketSort(list_to_sort)
+
+	end_time = datetime.datetime.now()
+	print(end_time)
+	time_diff = (end_time - start_time)
+	print(time_diff.total_seconds() * 1000.0)
+
+
+main()
