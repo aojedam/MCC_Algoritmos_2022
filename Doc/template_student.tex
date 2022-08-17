@@ -2,7 +2,10 @@
 \documentclass{article}
 \usepackage[top=3cm, bottom=3cm, outer=3cm, inner=3cm]{geometry}
 \usepackage{graphicx}
+\usepackage{forest}
 \usepackage{url}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
 %\usepackage{cite}
 \usepackage{hyperref}
 \usepackage{array}
@@ -24,7 +27,7 @@
 \newcommand{\csuniversidad}{Universidad Nacional de San Agustín}
 \newcommand{\csescuela}{Maestría en Ciencia de la Computación}
 \newcommand{\cspracnr}{01}
-\newcommand{\cstema}{--}
+\newcommand{\cstema}{Análisis de algoritmos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -34,12 +37,21 @@
 \AtBeginDocument{\selectlanguage{spanish}}
 \renewcommand{\figurename}{Figura}
 \renewcommand{\refname}{Referencias}
-\renewcommand{\tablename}{Tabla} %esto no funciona cuando se usa babel
-\AtBeginDocument{%
+\renewcommand{\tablename}{Tabla} 
+\AtBeginDocument{
 	\renewcommand\tablename{Tabla}
 }
 
 \usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{tikz-qtree}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,bending}
+\tikzset{every tree node/.style={minimum width=2.5em,draw,circle},
+     blank/.style={draw=none},
+     edge from parent/.style=
+     {draw, edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}},
+     level distance=1.5cm}
 \pagestyle{fancy}
 \fancyhf{}
 \setlength{\headheight}{30pt}
@@ -51,11 +63,6 @@
 \fancyfoot[L]{MSc. Vicente Machaca}
 \fancyfoot[C]{\cscurso}
 \fancyfoot[R]{Página \thepage}
-
-
-
-
-
 
 
 \begin{document}
@@ -70,7 +77,7 @@
 	
 
 	\begin{table}[h]
-		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+		\begin{tabular}{|x{4.7cm}|x{4.7cm}|x{4.7cm}|}
 			\hline 
 			\textbf{DOCENTE} & \textbf{CARRERA}  & \textbf{CURSO}   \\
 			\hline 
@@ -81,7 +88,7 @@
 	
 	
 	\begin{table}[h]
-		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+		\begin{tabular}{|x{4.7cm}|x{4.7cm}|x{4.7cm}|}
 			\hline 
 			\textbf{PRÁCTICA} & \textbf{TEMA}  & \textbf{DURACIÓN}   \\
 			\hline 
@@ -92,36 +99,250 @@
 	
 	
 	\section{Datos de los estudiantes}
-	\begin{itemize}
-		\item Grupo: 09
-		\item Integrantes: 
+	\begin{enumerate}
+		\item \textbf{Grupo:} 09
+		\item \textbf{Integrantes:}
 		\begin{itemize}
 			\item Asmat Fuentes, Franz Rogger
 			\item Esthela Espinoza, Fausto Danilo
 			\item Ojeda Mamani, Abel Eberth
 			\item Paredes Rodriguez, Raybert
 		\end{itemize}		
-	\end{itemize}
+	\end{enumerate}
 	
 	\section{Ejercicios}\label{sec:ejercicios}
 	\begin{enumerate}
-		\item Enunciado del primer ejercicio ...
-		
-		Solución \\
-		.................
-		
-		\item Enunciado del segundo ejercicio ...
-		
-		Solución \\
-		.................
-	\end{enumerate}
+        \item \textbf{QuickSort:} 
+            Quick sort
+        \item \textbf{MergeSort:}
+            Merge Sort
+        \item \textbf{BucketSort:}
+            Bucket Sort
+        \item \textbf{HeapSort:}
+            "El tiempo de ejecución de heapsort es \emph{O(n lg n)}. Al igual que la ordenación por inserción, pero a diferencia de la ordenación por fusión, la ordenación por montón ordena en el lugar: solo se almacena una cantidad constante de elementos de matriz fuera de la matriz de entrada en cualquier momento. Por lo tanto, heapsort combina los mejores atributos de estos dos algoritmos de clasificación.\par
+            
+            Heapsort también presenta otra técnica de diseño de algoritmos: usar una estructura de datos, en este caso una que llamamos "montón" (heap), para administrar la información. La estructura de datos del montón no solo es útil para heapsort, sino que también crea una cola de prioridad eficiente". \cite{cormen2022} \par
 
+            El funcionamiento del algoritmo es generar un árbol binario para el array, se comparan los elementos padre de cada nodo (que contenga hijos) y se verifica que ambos hijos sean menores que el nodo padre, de no cumplirse esta regla se procede a realizar un intercambio del valor mayor con el padre. Se procede de forma consecutiva hasta tener el elemento de mayor valor hasta la cima, una vez obtenido se intercambia con el ultimo elemento y se vuelve a repetir el proceso hasta que el array se encuentre ordenado.\par
 
-	
-	%\clearpage
-	%\bibliographystyle{apalike}
-	%\bibliographystyle{IEEEtranN}
-	%\bibliography{bibliography}
-		
+            \textbf{Ejemplo}
+            Teniendo el siguiente array:
+
+            %\centering
+            \begin{tabularx}{0.8\textwidth} { 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X | }
+                \hline
+                    \textbf{3} & \textbf{7} & \textbf{5} & \textbf{2} & \textbf{4} & \textbf{6} & \textbf{9} & \textbf{1} & \textbf{8} \\
+                \hline
+                    0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+                \hline
+            \end{tabularx}
+
+            En base a este array se genera el siguiente árbol
+
+            \begin{tikzpicture}
+              [level distance=10mm,
+               every node/.style={circle,draw,inner sep=2mm},
+               level 1/.style={sibling distance=25mm},
+               level 2/.style={sibling distance=15mm},
+               level 3/.style={sibling distance=15mm}]
+              \node {3}
+                 child {node {7}
+                   child {node {2}
+                     child {node {1}}
+                     child {node {8}}
+                   }
+                   child {node {4}}
+                 }
+                 child {node {5}
+                   child {node {6}}
+                   child {node {9}}
+                 };
+            \end{tikzpicture}
+
+        Se encuentra el ultimo nodo padre, en el ejemplo "2", Los elementos se ubican de la siguiente forma: (siendo i el índice del elemento a evaluar y n el numero de elementos del array):\par
+        
+        \textbf{Nodo padre}
+        \[ Padre = i/2 \]
+        \textbf{Nodo hijo izquierda (azul)}
+        \[ Izquierda = 2i \]
+        \textbf{Nodo hijo derecha (rojo)}
+        \[ Derecha = 2i+1 \]
+
+        \begin{tikzpicture}
+            [level distance=10mm,
+                every node/.style={circle,draw,inner sep=2mm},
+                level 1/.style={sibling distance=25mm},
+                level 2/.style={sibling distance=15mm},
+                level 3/.style={sibling distance=15mm}]
+          \node {3}
+             child {node {7}
+               child {node [fill=yellow] {2}
+                 child {node [fill=blue!50] {1}}
+                 child {node [fill=red!50] {8}}
+               }
+               child {node {4}}
+             }
+             child {node {5}
+               child {node {6}}
+               child {node {9}}
+             };
+        \end{tikzpicture}
+        
+        Una vez ubicado el ultimo nodo padre se procede a aplicar la regla que ambos hijos deben ser menores al valor del padre, en el ejemplo no se cumple con la regla (2, el padre, es menor que 8, uno de los hijos), por lo tanto, se debe intercambiar de los hijos el nodo con valor mayor (8), quedando de la siguiente forma:
+
+        \begin{tikzpicture}
+            [level distance=10mm,
+               every node/.style={circle,draw,inner sep=2mm},
+               level 1/.style={sibling distance=25mm},
+               level 2/.style={sibling distance=15mm},
+               level 3/.style={sibling distance=15mm}]
+          \node {3}
+             child {node {7}
+               child {node [fill=lightgray] {\textbf{8}}
+                 child {node {1}}
+                 child {node [fill=lightgray] {\textbf{2}}}
+               }
+               child {node {4}}
+             }
+             child {node {5}
+               child {node {6}}
+               child {node {9}}
+             };
+        \end{tikzpicture}
+
+        Este proceso se repite para todos los nodos padres del árbol (8, 7, 5 y 3), finalmente el árbol terminaría de la siguiente forma:
+
+        \begin{tikzpicture}
+            [level distance=10mm,
+               every node/.style={circle,draw,inner sep=2mm},
+               level 1/.style={sibling distance=25mm},
+               level 2/.style={sibling distance=15mm},
+               level 3/.style={sibling distance=15mm}]
+          \node [fill=lightgray] {9}
+             child {node [fill=lightgray] {8}
+               child {node [fill=lightgray] {\textbf{7}}
+                 child {node {1}}
+                 child {node [fill=lightgray] {\textbf{2}}}
+               }
+               child {node {4}}
+             }
+             child {node [fill=lightgray] {3}
+               child {node {6}}
+               child {node [fill=lightgray] {5}}
+             };
+        \end{tikzpicture}
+
+        Como se puede observar en la imagen, el mayor queda en la cima del árbol, quedando el array de esta forma:
+
+            \begin{tabularx}{0.8\textwidth} { 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X | }
+                \hline
+                    \textbf{9} & \textbf{8} & \textbf{3} & \textbf{7} & \textbf{4} & \textbf{6} & \textbf{5} & \textbf{1} & \textbf{2} \\
+                \hline
+                    0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+                \hline
+            \end{tabularx}
+
+        El siguiente paso es intercambiar el primer elemento con el último
+
+            \begin{tabularx}{0.8\textwidth} { 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X 
+                  | >{\centering\arraybackslash}X | }
+                \hline
+                    \textbf{2} & \textbf{8} & \textbf{3} & \textbf{7} & \textbf{4} & \textbf{6} & \textbf{5} & \textbf{1} & \textbf{9} \\
+                \hline
+                    0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+                \hline
+            \end{tabularx}
+
+            Se repite el proceso sin incluir el ultimo elemento (o los elementos ordenados en cada iteración)
+        \end{enumerate}
+            
+    \section{Ejecución}\label{sec:ejecucion}
+            \begin{enumerate}
+                \item \textbf{QuickSort:} 
+                    Quick sort
+                \item \textbf{MergeSort:}
+                    Merge Sort
+                \item \textbf{BucketSort:}
+                    Bucket Sort
+                \item \textbf{HeapSort:}
+                
+                Comparación de ejecución entre lenguajes
+                
+                \textbf{Ejecución en Python}
+                
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        xlabel=$Cantidad de datos$,
+                        ylabel=$Tiempo (en milisegundos)$,
+                        xmin=0, xmax=1000000,
+                        ymin=0, ymax=20000,
+                        xtick={10,20,30},
+                        xticklabels={A,B,X},   % <---
+                        ytick={1,2,...,1000000}
+                                ]
+                    \addplot[smooth,mark=*,blue] plot coordinates {
+                        (100,0.5)
+                        (1000,6.2)
+                        (10000,111.3)
+                        %(100000,970.7)
+                        %(1000000,13816.3)
+                    };
+                    \addlegendentry{Python}
+                    
+                    %\addplot[smooth,color=red,mark=x]
+                    %    plot coordinates {
+                    %        (100,0.5)
+                    %        (1000,6.2)
+                    %        (10000,111.3)
+                    %        (100000,970.7)
+                    %        (1000000,13816.3)
+                    %    };
+                    %\addlegendentry{Case 2}
+                    \end{axis}
+                \end{tikzpicture}
+                
+            \end{enumerate}
+
+    \section{Conclusiones}\label{sec:conclusiones}
+            Conclusiones aca
+    
+	\bibliographystyle{apalike}
+	\bibliography{bibliography}
+    
+    \begin{thebibliography}{2}
+        \bibitem{cormen2022}
+            Thomas H. Cormen (2022), Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, MIT Press
+    
+        \bibitem{lamport1994}
+            Leslie Lamport (1994), Addison
+            Wesley, Massachusetts, 2nd ed.
+            
+    \end{thebibliography}
 	
 \end{document}
