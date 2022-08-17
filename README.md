@@ -53,6 +53,7 @@ Teniendo el siguiente array:
 
 En base a este array se genera el siguiente árbol
 
+...latex
 $$
 \usepackage{tikz-qtree}
 \usepackage{tikz}
