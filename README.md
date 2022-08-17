@@ -54,6 +54,8 @@ Teniendo el siguiente array:
 En base a este array se genera el siguiente árbol
 
 $$
+\usepackage{tikz-qtree}
+\usepackage{tikz}
 \begin{tikzpicture}
     [level distance=10mm,
     every node/.style={circle,draw,inner sep=2mm},
