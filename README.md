@@ -38,14 +38,14 @@ BucketSort
 
 ### 2.4. HeapSort
 
-        "El tiempo de ejecución de heapsort es _O(n lg n)_. Al igual que la ordenación por inserción, pero a diferencia de la ordenación por fusión, la ordenación por montón ordena en el lugar: solo se almacena una cantidad constante de elementos de matriz fuera de la matriz de entrada en cualquier momento. Por lo tanto, heapsort combina los mejores atributos de estos dos algoritmos de clasificación.
-            
-        Heapsort también presenta otra técnica de diseño de algoritmos: usar una estructura de datos, en este caso una que llamamos "montón" (heap), para administrar la información. La estructura de datos del montón no solo es útil para heapsort, sino que también crea una cola de prioridad eficiente". (cormen2022)
+    ""El tiempo de ejecución de heapsort es _O(n lg n)_. Al igual que la ordenación por inserción, pero a diferencia de la ordenación por fusión, la ordenación por montón ordena en el lugar: solo se almacena una cantidad constante de elementos de matriz fuera de la matriz de entrada en cualquier momento. Por lo tanto, heapsort combina los mejores atributos de estos dos algoritmos de clasificación.
+        
+    Heapsort también presenta otra técnica de diseño de algoritmos: usar una estructura de datos, en este caso una que llamamos _**montón** (heap)_, para administrar la información. La estructura de datos del montón no solo es útil para heapsort, sino que también crea una cola de prioridad eficiente"". (cormen2022)
 
-        El funcionamiento del algoritmo es generar un árbol binario para el array, se comparan los elementos padre de cada nodo (que contenga hijos) y se verifica que ambos hijos sean menores que el nodo padre, de no cumplirse esta regla se procede a realizar un intercambio del valor mayor con el padre. Se procede de forma consecutiva hasta tener el elemento de mayor valor hasta la cima, una vez obtenido se intercambia con el ultimo elemento y se vuelve a repetir el proceso hasta que el array se encuentre ordenado.
+    El funcionamiento del algoritmo es generar un árbol binario para el array, se comparan los elementos padre de cada nodo (que contenga hijos) y se verifica que ambos hijos sean menores que el nodo padre, de no cumplirse esta regla se procede a realizar un intercambio del valor mayor con el padre. Se procede de forma consecutiva hasta tener el elemento de mayor valor hasta la cima, una vez obtenido se intercambia con el ultimo elemento y se vuelve a repetir el proceso hasta que el array se encuentre ordenado.
 
-        **Ejemplo**
-        Teniendo el siguiente array:
+    **Ejemplo**
+    Teniendo el siguiente array:
 
 | 3 | 4 | 9 | 5 | 2 | 0 | 1 | 6 | 8 | 7 |
 |---|---|---|---|---|---|---|---|---|---|
